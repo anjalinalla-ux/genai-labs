@@ -1,0 +1,120 @@
+AI-READY GENETIC TRAIT SUMMARY
+========================================
+Number of traits interpreted: 14
+Categories: Appearance, Fitness, Neurobehavior, Nutrition, Sensory, Sleep
+
+
+## Nutrition
+-------------
+
+Trait: Lactose tolerance
+Gene: LCT (rs4988235) — Genotype: CT
+Effect: Likely lactose tolerant  [MEDIUM_TOLERANCE]
+Explanation: This genotype is associated with continued lactase production into adulthood, so you are more likely to tolerate regular dairy compared to CC carriers, though individual tolerance can still vary.
+Evidence: strong
+
+
+Trait: Caffeine metabolism speed
+Gene: CYP1A2 (rs762551) — Genotype: AC
+Effect: Intermediate to slower caffeine metabolism  [MEDIUM]
+Explanation: This genotype is associated with somewhat slower caffeine metabolism than AA, so caffeine may stay in your system longer and have stronger or longer-lasting effects.
+Evidence: strong
+
+
+Trait: Folate metabolism tendency
+Gene: MTHFR (rs1801133) — Genotype: CT
+Effect: Mildly reduced folate metabolism  [SLIGHTLY_REDUCED]
+Explanation: This genotype is associated with moderately reduced MTHFR enzyme activity compared with CC. Some studies link it to slightly higher homocysteine levels, but lifestyle and nutrition play a major role.
+Evidence: strong
+
+
+Trait: Alcohol flush reaction tendency
+Gene: ALDH2 (rs671) — Genotype: GA
+Effect: Increased flush sensitivity  [HIGH_FLUSH_TENDENCY]
+Explanation: This genotype is associated with reduced ALDH2 activity and a higher chance of facial flushing, nausea or discomfort even with modest alcohol intake. It is also linked with higher acetaldehyde buildup, so minimizing alcohol use is especially important.
+Evidence: strong
+
+
+Trait: Omega-3 processing tendency
+Gene: FADS1 (rs174546) — Genotype: CT
+Effect: Slightly reduced omega-3 conversion  [SLIGHTLY_REDUCED]
+Explanation: This genotype is associated with somewhat lower FADS1 activity, which may mean a modestly reduced ability to convert plant omega-3s into long-chain forms. Food choices still have a much larger impact than genetics alone.
+Evidence: moderate
+
+
+## Fitness
+-----------
+
+Trait: Muscle power vs endurance tendency
+Gene: ACTN3 (rs1815739) — Genotype: RR
+Effect: Tends toward power/sprint traits  [POWER_BIASED]
+Explanation: This genotype is associated with the presence of functional α-actinin-3 protein in fast-twitch muscle fibers and is more common in strength and power athletes, although training and lifestyle still have a major influence.
+Evidence: moderate
+
+
+Trait: Tendon and ligament property tendency
+Gene: COL5A1 (rs12722) — Genotype: CT
+Effect: Slight variation in tendon properties  [INTERMEDIATE]
+Explanation: Some studies suggest this genotype may be linked to subtle differences in tendon or ligament properties. Any effect is likely small compared with training, recovery, and biomechanics.
+Evidence: emerging
+
+
+Trait: Aerobic training response tendency
+Gene: PPARGC1A (rs8192678) — Genotype: GA
+Effect: Intermediate endurance adaptation tendency  [INTERMEDIATE_RESPONSE]
+Explanation: This genotype may be linked to an intermediate pattern of endurance adaptations, with genetics playing only a small role beside training, nutrition, and recovery.
+Evidence: emerging
+
+
+Trait: High-intensity fatigue tendency
+Gene: AMPD1 (rs17602729) — Genotype: CT
+Effect: Higher fatigue tendency in intense efforts  [HIGHER_FATIGUE]
+Explanation: This genotype has been linked to reduced AMPD1 activity in some studies and may be associated with feeling fatigue sooner during very intense exercise, though results are mixed and training adaptation is key.
+Evidence: moderate
+
+
+## Sleep
+---------
+
+Trait: Natural sleep duration tendency
+Gene: ABCC9 (rs11046205) — Genotype: AG
+Effect: Intermediate sleep duration tendency  [INTERMEDIATE]
+Explanation: With one A and one G allele, your natural sleep duration tendency may fall between the two extremes, but real-life sleep patterns are mostly shaped by lifestyle, environment, and mental health.
+Evidence: moderate
+
+
+## Neurobehavior
+-----------------
+
+Trait: Stress response tendency (HPA axis)
+Gene: FKBP5 (rs1360780) — Genotype: CT
+Effect: Slightly higher stress reactivity tendency  [ELEVATED]
+Explanation: This genotype has been linked to somewhat different regulation of the HPA axis in some studies, which may translate into a tendency toward stronger or more prolonged stress responses in certain situations.
+Evidence: moderate
+
+
+## Sensory
+-----------
+
+Trait: Bitter taste sensitivity (PTC-like)
+Gene: TAS2R38 (rs713598) — Genotype: CG
+Effect: Intermediate bitter taste sensitivity  [INTERMEDIATE]
+Explanation: This genotype is usually linked with moderate sensitivity to these bitter compounds, so some foods may taste somewhat bitter without being extremely intense.
+Evidence: strong
+
+
+## Appearance
+--------------
+
+Trait: Eye color influence (blue–brown axis)
+Gene: HERC2 (rs12913832) — Genotype: GA
+Effect: Mixed eye-color tendency  [INTERMEDIATE]
+Explanation: This genotype is often associated with intermediate or variable eye colors, such as hazel or green, depending on other pigmentation variants and ancestry.
+Evidence: strong
+
+
+Trait: Sun sensitivity tendency
+Gene: MC1R (rs1805007) — Genotype: CT
+Effect: Increased sun sensitivity tendency  [HIGHER]
+Explanation: Carriers of one copy of this MC1R variant may have lighter pigmentation, more freckles, and a greater tendency to burn rather than tan, though daily sun protection is important for everyone.
+Evidence: moderate

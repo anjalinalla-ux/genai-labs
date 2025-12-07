@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Genetic Trait Report</title>
+    <style>
+        body {
+            font-family: -apple-system, system-ui, -webkit-system-font, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f7fb;
+            color: #222;
+        }
+        .page {
+            max-width: 900px;
+            margin: 32px auto 48px;
+            padding: 24px 28px 32px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 12px 25px rgba(15, 23, 42, 0.12);
+        }
+        h1, h2, h3 {
+            color: #111827;
+            margin-top: 0;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        h2 {
+            font-size: 22px;
+            margin-top: 24px;
+        }
+        h3 {
+            font-size: 18px;
+            margin-top: 16px;
+        }
+        p {
+            margin: 6px 0 10px;
+        }
+        .header-sub {
+            font-size: 0.95em;
+            color: #4b5563;
+        }
+        .toc {
+            margin: 18px 0 20px;
+            padding: 12px 14px;
+            background: #f3f4ff;
+            border-radius: 12px;
+            border: 1px solid #e5e7ff;
+            font-size: 0.95em;
+        }
+        .toc-title {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #4338ca;
+        }
+        .toc-links a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #4338ca;
+            font-weight: 500;
+        }
+        .toc-links a:hover {
+            text-decoration: underline;
+        }
+        .category {
+            margin-top: 28px;
+        }
+        .category h2 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .category-icon {
+            font-size: 1.4em;
+        }
+        .trait-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .trait-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 10px 14px 12px;
+            background: #f9fafb;
+            transition: box-shadow 0.15s ease, transform 0.15s ease, background 0.15s ease;
+        }
+        .trait-card:hover {
+            background: #ffffff;
+            box-shadow: 0 8px 18px rgba(148, 163, 184, 0.28);
+            transform: translateY(-1px);
+        }
+        .trait-title {
+            font-weight: 600;
+            font-size: 1.0em;
+            margin-bottom: 2px;
+        }
+        .meta {
+            font-size: 0.82em;
+            color: #6b7280;
+        }
+        .effect {
+            margin-top: 6px;
+            font-size: 0.9em;
+        }
+        .effect-label {
+            font-weight: 500;
+        }
+        .effect-tag {
+            display: inline-block;
+            font-size: 0.78em;
+            padding: 1px 8px;
+            border-radius: 999px;
+            background: #eef2ff;
+            color: #4338ca;
+            margin-left: 6px;
+        }
+        .bar-outer {
+            width: 100%;
+            background: #e5e7eb;
+            border-radius: 999px;
+            height: 8px;
+            margin-top: 6px;
+            overflow: hidden;
+        }
+        .bar-inner {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #6366f1, #22c55e);
+        }
+        .explanation {
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+        .evidence {
+            font-size: 0.78em;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        .disclaimer {
+            font-size: 0.8em;
+            color: #6b7280;
+            margin-top: 28px;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 10px;
+        }
+        .section-label {
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.76em;
+            color: #6b7280;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+        .overview-box {
+            margin-top: 14px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+<h1>Genetic Trait Summary</h1>
+<div class='header-sub'>Traits interpreted: <strong>14</strong> · Categories: Appearance, Fitness, Neurobehavior, Nutrition, Sensory, Sleep</div>
+<div class='toc'>
+<div class='toc-title'>Jump to a section:</div>
+<div class='toc-links'>
+<a href='#cat-Appearance'>🌈 Appearance</a>
+<a href='#cat-Fitness'>🏃‍♀️ Fitness</a>
+<a href='#cat-Neurobehavior'>🧠 Neurobehavior</a>
+<a href='#cat-Nutrition'>🥦 Nutrition</a>
+<a href='#cat-Sensory'>👁️ Sensory</a>
+<a href='#cat-Sleep'>😴 Sleep</a>
+</div></div>
+<div class='section-label'>Personalized overview</div>
+<div class='overview-box'>
+In exploring your genetic traits, we've uncovered a variety of insights that touch on how your genes may influence aspects of nutrition, fitness, sleep, neurobehavior, sensory perception, and appearance. While your genetic makeup can provide hints about your tendencies in these areas, it's important to remember that many factors, including your lifestyle choices and environment, play a significant role in shaping who you are.<br><br>When it comes to nutrition, you show a likely tolerance to lactose, which means you might enjoy dairy without discomfort. However, you tend to metabolize caffeine a bit more slowly, so you may feel its effects last longer. Additionally, your body has a slightly reduced ability to process folate, although your diet will have a bigger impact here. In terms of fitness, your genetics suggest you lean towards muscle power rather than endurance, which is common among athletes focused on strength. You may experience a higher tendency to feel fatigued during intense exercise, but remember that training and recovery are key factors. <br><br>Your sleep patterns are likely to be moderate, influenced significantly by your lifestyle rather than just your genetics. On the neurobehavioral side, you may have a slightly heightened response to stress, which can vary in different situations. Sensory traits show that you have a moderate sensitivity to bitter tastes, while your eye color might be quite variable, perhaps leaning towards hazel or green. Lastly, you have an increased sensitivity to the sun, suggesting that sun protection is especially important for you. <br><br>Remember, genetics is just one piece of the puzzle. Your environment, lifestyle, mental health, and medical care are equally crucial in determining your overall health and well-being. Embrace the unique traits you have, but know that you have the power to shape your life in many meaningful ways.
+</div>
+<div class="category" id="cat-Nutrition">
+<h2><span class="category-icon">🥦</span>Nutrition</h2>
+<div class="trait-grid">
+<div class="trait-card">
+<div class="trait-title">Lactose tolerance</div>
+<div class="meta">Gene: LCT (rs4988235) · Genotype: CT</div>
+<div class="effect"><span class="effect-label">Effect:</span> Likely lactose tolerant <span class="effect-tag">MEDIUM_TOLERANCE</span></div>
+<div class="bar-outer">
+<div class="bar-inner" style="width: 55%;"></div>
+</div>
+<div class="explanation">This genotype is associated with continued lactase production into adulthood, so you are more likely to tolerate regular dairy compared to CC carriers, though individual tolerance can still vary.</div>
+<div class="evidence"><strong>Evidence level:</strong> strong</div>
+</div>
+<div class="trait-card">
+<div class="trait-title">Caffeine metabolism speed</div>
+<div class="meta">Gene: CYP1A2 (rs762551) · Genotype: AC</div>
+<div class="effect"><span class="effect-label">Effect:</span> Intermediate to slower caffeine metabolism <span class="effect-tag">MEDIUM</span></div>
+<div class="bar-outer">
+<div class="bar-inner" style="width: 55%;"></div>
+</div>
+<div class="explanation">This genotype is associated with somewhat slower caffeine metabolism than AA, so caffeine may stay in your system longer and have stronger or longer-lasting effects.</div>
+<div class="evidence"><strong>Evidence level:</strong> strong</div>
+</div>
+<div class="trait-card">
+<div class="trait-title">Folate metabolism tendency</div>
+<div class="meta">Gene: MTHFR (rs1801133) · Genotype: CT</div>
+<div class="effect"><span class="effect-label">Effect:</span> Mildly reduced folate metabolism <span class="effect-tag">SLIGHTLY_REDUCED</span></div>
+<div class="bar-outer">
+<div class="bar-inner" style="width: 35%;"></div>
+</div>
+<div class="explanation">This genotype is associated with moderately reduced MTHFR enzyme activity compared with CC. Some studies link it to slightly higher homocysteine levels, but lifestyle and nutrition play a major role.</div>
+<div class="evidence"><strong>Evidence level:</strong> strong</div>
+</div>
+<div class="trait-card">
+<div class="trait-title">Alcohol flush reaction tendency</div>
+<div class="meta">Gene: ALDH2 (rs671) · Genotype: GA</div>
+<div class="effect"><span class="effect-label">Effect:</span> Increased flush sensitivity <span class="effect-tag">HIGH_FLUSH_TENDENCY</span></div>
+<div class="bar-outer">
+<div class="bar-inner" style="width: 85%;"></div>
+</div>
+<div class="explanation">This genotype is associated with reduced ALDH2 activity and a higher chance of facial flushing, nausea or discomfort even with modest alcohol intake. It is also linked with higher acetaldehyde buildup, so minimizing alcohol use is especially important.</div>
+<div class="evidence"><strong>Evidence level:</strong> strong</div>
+</div>
+<div class="trait-card">
+<div class="trait-title">Omega-3 processing tendency</div>
+<div class="meta">Gene: FADS1 (rs174546) · Genotype: CT</div>
+<div class="effect"><span class="effect-label">Effect:</span> Slightly reduced omega-3 conversion <span class="effect-tag">SLIGHTLY_REDUCED</span></div>
+<div class="bar-outer">
+<div class="bar-inner" style="width: 35%;"></div>
+</div>
+<div class="explanation">This genotype is associated with somewhat lower FADS1 activity, which may mean a modestly reduced ability to convert plant omega-3s into long-chain forms. Food choices still have a much larger impact than genetics alone.</div>
+<div class="evidence"><strong>Evidence level:</strong> moderate</div>
+</div>
+</div>
+</div>
+<div class="category" id="cat-Fitness">
+<h2><span class="category-icon">🏃‍♀️</span>Fitness</h2>
+<div class="trait-grid">
+<div class="trait-card">
+<div class="trait-title">Muscle power vs endurance tendency</div>
+<div class="meta">Gene: ACTN3 (rs1815739) · Genotype: RR</div>
+<div class="effect"><span class="effect-label">Effect:</span> Tends toward power/sprint traits <span class="effect-tag">POWER_BIASED</span></div>
+<div class="bar-outer">
+<div class="bar-inner" style="width: 80%;"></div>
+</div>
+<div class="explanation">This genotype is associated with the presence of functional α-actinin-3 protein in fast-twitch muscle fibers and is more common in strength and power athletes, although training and lifestyle still have a major influence.</div>
+<div class="evidence"><strong>Evidence level:</strong> moderate</div>
+</div>
+<div class="trait-card">
+<div class="trait-title">Tendon and ligament property tendency</div>
+<div class="meta">Gene: COL5A1 (rs12722) · Genotype: CT</div>
+<div class="effect"><span class="effect-label">Effect:</span> Slight variation in tendon properties <span class="effect-tag">INTERMEDIATE</span></div>
+<div class="bar-outer">
+<div class="bar-inner" style="width: 55%;"></div>
+</div>
+<div class="explanation">Some studies suggest this genotype may be linked to subtle differences in tendon or ligament properties. Any effect is likely small compared with training, recovery, and biomechanics.</div>
+<div class="evidence"><strong>Evidence level:</strong> emerging</div>
+</div>
+<div class="trait-card">
+<div class="trait-title">Aerobic training response tendency</div>
+<div class="meta">Gene: PPARGC1A (rs8192678) · Genotype: GA</div>
+<div class="effect"><span class="effect-label">Effect:</span> Intermediate endurance adaptation tendency <span class="effect-tag">INTERMEDIATE_RESPONSE</span></div>
+<div class="bar-outer">
+<div class="bar-inner" style="width: 55%;"></div>
+</div>
+<div class="explanation">This genotype may be linked to an intermediate pattern of endurance adaptations, with genetics playing only a small role beside training, nutrition, and recovery.</div>
+<div class="evidence"><strong>Evidence level:</strong> emerging</div>
+</div>
+<div class="trait-card">
+<div class="trait-title">High-intensity fatigue tendency</div>
+<div class="meta">Gene: AMPD1 (rs17602729) · Genotype: CT</div>
+<div class="effect"><span class="effect-label">Effect:</span> Higher fatigue tendency in intense efforts <span class="effect-tag">HIGHER_FATIGUE</span></div>
+<div class="bar-outer">
+<div class="bar-inner" style="width: 85%;"></div>
+</div>
+<div class="explanation">This genotype has been linked to reduced AMPD1 activity in some studies and may be associated with feeling fatigue sooner during very intense exercise, though results are mixed and training adaptation is key.</div>
+<div class="evidence"><strong>Evidence level:</strong> moderate</div>
+</div>
+</div>
+</div>
+<div class="category" id="cat-Sleep">
+<h2><span class="category-icon">😴</span>Sleep</h2>
+<div class="trait-grid">
+<div class="trait-card">
+<div class="trait-title">Natural sleep duration tendency</div>
+<div class="meta">Gene: ABCC9 (rs11046205) · Genotype: AG</div>
+<div class="effect"><span class="effect-label">Effect:</span> Intermediate sleep duration tendency <span class="effect-tag">INTERMEDIATE</span></div>
+<div class="bar-outer">
+<div class="bar-inner" style="width: 55%;"></div>
+</div>
+<div class="explanation">With one A and one G allele, your natural sleep duration tendency may fall between the two extremes, but real-life sleep patterns are mostly shaped by lifestyle, environment, and mental health.</div>
+<div class="evidence"><strong>Evidence level:</strong> moderate</div>
+</div>
+</div>
+</div>
+<div class="category" id="cat-Neurobehavior">
+<h2><span class="category-icon">🧠</span>Neurobehavior</h2>
+<div class="trait-grid">
+<div class="trait-card">
+<div class="trait-title">Stress response tendency (HPA axis)</div>
+<div class="meta">Gene: FKBP5 (rs1360780) · Genotype: CT</div>
+<div class="effect"><span class="effect-label">Effect:</span> Slightly higher stress reactivity tendency <span class="effect-tag">ELEVATED</span></div>
+<div class="bar-outer">
+<div class="bar-inner" style="width: 50%;"></div>
+</div>
+<div class="explanation">This genotype has been linked to somewhat different regulation of the HPA axis in some studies, which may translate into a tendency toward stronger or more prolonged stress responses in certain situations.</div>
+<div class="evidence"><strong>Evidence level:</strong> moderate</div>
+</div>
+</div>
+</div>
+<div class="category" id="cat-Sensory">
+<h2><span class="category-icon">👁️</span>Sensory</h2>
+<div class="trait-grid">
+<div class="trait-card">
+<div class="trait-title">Bitter taste sensitivity (PTC-like)</div>
+<div class="meta">Gene: TAS2R38 (rs713598) · Genotype: CG</div>
+<div class="effect"><span class="effect-label">Effect:</span> Intermediate bitter taste sensitivity <span class="effect-tag">INTERMEDIATE</span></div>
+<div class="bar-outer">
+<div class="bar-inner" style="width: 55%;"></div>
+</div>
+<div class="explanation">This genotype is usually linked with moderate sensitivity to these bitter compounds, so some foods may taste somewhat bitter without being extremely intense.</div>
+<div class="evidence"><strong>Evidence level:</strong> strong</div>
+</div>
+</div>
+</div>
+<div class="category" id="cat-Appearance">
+<h2><span class="category-icon">🌈</span>Appearance</h2>
+<div class="trait-grid">
+<div class="trait-card">
+<div class="trait-title">Eye color influence (blue–brown axis)</div>
+<div class="meta">Gene: HERC2 (rs12913832) · Genotype: GA</div>
+<div class="effect"><span class="effect-label">Effect:</span> Mixed eye-color tendency <span class="effect-tag">INTERMEDIATE</span></div>
+<div class="bar-outer">
+<div class="bar-inner" style="width: 55%;"></div>
+</div>
+<div class="explanation">This genotype is often associated with intermediate or variable eye colors, such as hazel or green, depending on other pigmentation variants and ancestry.</div>
+<div class="evidence"><strong>Evidence level:</strong> strong</div>
+</div>
+<div class="trait-card">
+<div class="trait-title">Sun sensitivity tendency</div>
+<div class="meta">Gene: MC1R (rs1805007) · Genotype: CT</div>
+<div class="effect"><span class="effect-label">Effect:</span> Increased sun sensitivity tendency <span class="effect-tag">HIGHER</span></div>
+<div class="bar-outer">
+<div class="bar-inner" style="width: 85%;"></div>
+</div>
+<div class="explanation">Carriers of one copy of this MC1R variant may have lighter pigmentation, more freckles, and a greater tendency to burn rather than tan, though daily sun protection is important for everyone.</div>
+<div class="evidence"><strong>Evidence level:</strong> moderate</div>
+</div>
+</div>
+</div>
+
+<div class="disclaimer">
+    <strong>Important:</strong> This report is for educational and informational purposes only.
+    It does not provide medical advice, diagnosis, or treatment. Genetics is only one factor
+    among many (environment, lifestyle, mental health, and medical care). For any health-related questions,
+    please talk with a licensed healthcare provider or genetic counselor.
+</div>
+</div> <!-- end page -->
+</body>
+</html>
