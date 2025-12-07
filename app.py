@@ -601,6 +601,28 @@ st.markdown(
     .how-title {
         color: #111827 !important;
     }
+/* Global site footer */
+.site-footer {
+    margin-top: 40px;
+    padding: 18px 0 10px;
+    border-top: 1px solid rgba(148, 163, 184, 0.4);
+    font-size: 0.8rem;
+    color: #9ca3af;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    opacity: 0.9;
+}
+.site-footer a {
+    color: #9ca3af;
+    text-decoration: none;
+}
+.site-footer a:hover {
+    text-decoration: underline;
+    color: #e5e7eb;
+}
     </style>
     """,
     unsafe_allow_html=True,
@@ -1548,6 +1570,19 @@ elif page == "Contact":
                 st.success(
                     "Thank you for reaching out. In a production environment this would send your message to the project owner."
                 )
-
-    st.markdown("---")
-    st.caption("Prototype only. No data is persisted or transmitted beyond this session.")
+# ---------- Global footer ----------
+st.markdown(
+    """
+    <div class="site-footer">
+      <div>
+        GenAI Labs · Educational genomics prototype · Not for diagnosis or treatment.
+      </div>
+      <div>
+        Built by Anjali Nalla · Independent project, not affiliated with 23andMe or any consumer genetics company.
+      </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+st.markdown("---")
+st.caption("Prototype only. No data is persisted or transmitted beyond this session.")
