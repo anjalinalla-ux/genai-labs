@@ -157,7 +157,7 @@ st.markdown(
     .stButton>button {
         background: transparent;
         border: none;
-        color: #4b5563;
+        color: #e5e7eb; /* light text on dark background */
         padding: 2px 0;
         font-size: 0.9rem;
         font-weight: 500;
@@ -167,15 +167,15 @@ st.markdown(
     }
 
     .stButton>button:hover {
-        color: #111827;
-        border-bottom-color: #d1d5db;
+        color: #ffffff; /* pure white on hover */
+        border-bottom-color: #38bdf8;
         transform: translateY(-1px);
         cursor: pointer;
     }
 
     .nav-active > button {
         border-bottom-color: #3b82f6 !important;
-        color: #111827 !important;
+        color: #ffffff !important;
     }
 
     /* HERO BAND */
@@ -740,6 +740,24 @@ st.markdown(
 html {
   scroll-behavior: smooth;
 }
+
+/* NAV BUTTON CONTRAST FIX: make top-nav buttons readable on dark background */
+.nav-button-container .stButton > button {
+    background: transparent !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.2px;
+    border-bottom: 2px solid transparent !important;
+    border-radius: 0 !important;
+    padding: 2px 0 !important;
+}
+
+.nav-button-container .stButton > button:hover {
+    color: #ffffff !important;
+    border-bottom-color: #38bdf8 !important;
+    transform: translateY(-1px);
+}
     </style>
     """,
     unsafe_allow_html=True,
@@ -757,15 +775,6 @@ if "page_transition_key" not in st.session_state:
 def set_page(page_name: str):
     st.session_state.active_page = page_name
     st.session_state.page_transition_key += 1
-
-
-page = st.session_state.active_page
-
-# Wrapper to trigger CSS animation on page change
-st.markdown(
-    f"<div class='page-wrap' data-k='{st.session_state.page_transition_key}'>",
-    unsafe_allow_html=True,
-)
 
 # ---------- TOP NAV BAR ----------
 with st.container():
@@ -898,13 +907,19 @@ transition: color 0.16s ease, border-bottom-color 0.16s ease,
         labels = ["Home", "Upload", "Lifestyle chatbot", "Trait explorer", "Trait science", "About", "Contact"]
 
         for i, p in enumerate(pages):
-            active = st.session_state.get("active_page", "Home") == p
-            btn_classes = "nav-btn nav-btn-active" if active else "nav-btn"
-            # Streamlit does not let us set classes per button directly, so we just use the label
-            if nav_cols[i].button(labels[i], key=f"nav_{p}"):
-                st.session_state.active_page = p
+            if nav_cols[i].button(labels[i], key=f"nav_btn_{i}"):
+                set_page(p)
+                st.rerun()
 
         st.markdown("</div>", unsafe_allow_html=True)
+
+page = st.session_state.active_page
+
+# Wrapper to trigger CSS animation on page change
+st.markdown(
+    f"<div class='page-wrap' data-k='{st.session_state.page_transition_key}'>",
+    unsafe_allow_html=True,
+)
               
            
 # ---------- Newsletter state ----------
