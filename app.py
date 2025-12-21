@@ -17,7 +17,7 @@ client = OpenAI()  # uses your OPENAI_API_KEY
 
 # ---------- Page config ----------
 st.set_page_config(
-    page_title="GenAI Labs",
+    page_title="GenAI Engine",
     page_icon="🧬",
     layout="wide",
 )
@@ -623,6 +623,123 @@ st.markdown(
     text-decoration: underline;
     color: #e5e7eb;
 }
+
+/* Smooth section fade-in */
+.hero,
+.home-section,
+.section-light,
+.how-band,
+.chat-box,
+.feature-card {
+    animation: fadeUp 0.35s ease-out;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Button hover transitions */
+.stButton > button {
+    transition: background-color 0.18s ease, color 0.18s ease,
+                transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.stButton > button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.35);
+}
+
+/* Card hover transitions */
+.feature-card,
+.how-step,
+.trait-card,
+.chat-box {
+    transition: transform 0.18s ease-out, box-shadow 0.18s ease-out,
+                border-color 0.18s ease-out, background-color 0.18s ease-out;
+}
+
+.feature-card:hover,
+.how-step:hover,
+.trait-card:hover,
+.chat-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.4);
+    border-color: rgba(148, 163, 184, 0.7);
+}
+
+/* Navbar hover refinement */
+.nav-btn,
+.nav-btn-active {
+    transition: color 0.16s ease, border-bottom-color 0.16s ease,
+                transform 0.16s ease;
+}
+
+.nav-btn:hover,
+.nav-btn-active:hover {
+    transform: translateY(-1px);
+}
+
+/* ---------- Microanimations + Page Transitions ---------- */
+
+/* Page fade / slide on navigation (Streamlit rerun, but looks like a transition) */
+.page-wrap {
+  animation: pageFade 240ms ease-out;
+}
+
+@keyframes pageFade {
+  from { opacity: 0; transform: translateY(6px); filter: blur(1px); }
+  to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+/* Premium button microinteractions */
+.stButton > button {
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, color 180ms ease;
+  will-change: transform;
+}
+
+.stButton > button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.45);
+}
+
+.stButton > button:active {
+  transform: translateY(0px) scale(0.98);
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.35);
+}
+
+/* Card + panel hover polish */
+.feature-card, .how-step, .trait-card, .chat-box, .section-light {
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  will-change: transform;
+}
+
+.feature-card:hover, .how-step:hover, .trait-card:hover, .chat-box:hover, .section-light:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.45);
+  border-color: rgba(148, 163, 184, 0.75);
+}
+
+/* Navbar microinteraction (bolder + subtle lift) */
+.nav-btn {
+  font-weight: 600 !important;
+  letter-spacing: 0.2px;
+  transition: color 160ms ease, border-bottom-color 160ms ease, transform 160ms ease;
+}
+
+.nav-btn:hover {
+  transform: translateY(-1px);
+}
+
+html {
+  scroll-behavior: smooth;
+}
     </style>
     """,
     unsafe_allow_html=True,
@@ -632,11 +749,23 @@ st.markdown(
 if "active_page" not in st.session_state:
     st.session_state.active_page = "Home"
 
+# Page transition key (increments on navigation change)
+if "page_transition_key" not in st.session_state:
+    st.session_state.page_transition_key = 0
+
 
 def set_page(page_name: str):
     st.session_state.active_page = page_name
+    st.session_state.page_transition_key += 1
+
 
 page = st.session_state.active_page
+
+# Wrapper to trigger CSS animation on page change
+st.markdown(
+    f"<div class='page-wrap' data-k='{st.session_state.page_transition_key}'>",
+    unsafe_allow_html=True,
+)
 
 # ---------- TOP NAV BAR ----------
 with st.container():
@@ -669,24 +798,79 @@ with st.container():
                 padding-top: 8px;
             }
             .nav-btn {
-                background: transparent !important;
-                border: none !important;
-                font-size: 0.92rem !important;
-                color: #4b5563 !important;
-                padding-bottom: 2px !important;
-                border-bottom: 2px solid transparent !important;
-                transition: 0.15s ease !important;
-            }
-            .nav-btn:hover {
-                color: #111827 !important;
-                border-bottom: 2px solid #d1d5db !important;
-                transform: translateY(-1px) !important;
-                cursor: pointer;
-            }
-            .nav-btn-active {
-                color: #111827 !important;
-                border-bottom: 2px solid #3b82f6 !important;
-            }
+    background: transparent !important;
+    border: none !important;
+    font-size: 0.95rem !important;
+    color: #e5e7eb !important;              /* light text on dark nav */
+    border-bottom: 2px solid transparent !important;
+    padding-bottom: 4px !important;
+}
+
+.nav-btn:hover {
+    color: #ffffff !important;              /* bright white on hover */
+    border-bottom-color: #38bdf8 !important; /* cyan underline */
+    transform: translateY(-1px);
+}
+
+.nav-btn-active {
+    background: transparent !important;
+    color: #ffffff !important;              /* active tab always bright */
+    border-bottom: 2px solid #3b82f6 !important; /* blue underline */
+    padding-bottom: 4px !important;
+transition: color 0.16s ease, border-bottom-color 0.16s ease,
+                transform 0.16s ease;
+}
+
+/* G Helix rotating DNA mark */
+.g-helix-orbit {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    position: relative;
+    border: 1px solid rgba(148, 163, 184, 0.6);
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: helix-rotate 4.5s linear infinite;
+    background: radial-gradient(circle at 30% 30%, rgba(56, 189, 248, 0.3), transparent 55%);
+}
+
+.g-helix-strand {
+    position: absolute;
+    width: 2px;
+    height: 80%;
+    border-radius: 999px;
+    background: linear-gradient(to bottom, #38bdf8, #a855f7);
+    opacity: 0.95;
+}
+
+.g-helix-strand-left {
+    transform: rotate(18deg) translateX(-7px);
+}
+
+.g-helix-strand-right {
+    transform: rotate(-18deg) translateX(7px);
+}
+
+.g-helix-rung {
+    position: absolute;
+    width: 26px;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(to right, #38bdf8, #a855f7);
+    opacity: 0.9;
+}
+
+.g-helix-rung.rung-1 { top: 18%; }
+.g-helix-rung.rung-2 { top: 35%; }
+.g-helix-rung.rung-3 { top: 55%; }
+.g-helix-rung.rung-4 { top: 72%; }
+
+@keyframes helix-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
             </style>
             """,
             unsafe_allow_html=True,
@@ -698,7 +882,7 @@ with st.container():
             """
             <div class="nav-logo-container">
                 <div>
-                    <div class="logo-title">GENAI LABS</div>
+                    <div class="logo-title">GENAI ENGINE</div>
                     <div class="logo-sub">AI powered genomic insight</div>
                 </div>
             </div>
@@ -739,7 +923,7 @@ def newsletter_block(location_text: str):
         )
         st.markdown(
             "<div class='newsletter-modal'>"
-            "<div class='newsletter-title'>Join the GenAI Labs early access list</div>"
+            "<div class='newsletter-title'>Join the GenAI Engine early access list</div>"
             "<div class='newsletter-sub'>Get updates as the platform evolves and, in a full launch, "
             "receive your reports securely by email.</div>",
             unsafe_allow_html=True,
@@ -778,7 +962,7 @@ if page == "Home":
         <div class="hero-band">
           <div class="hero-grid">
             <div>
-              <div class="hero-chip">GenAI Labs · Prototype</div>
+              <div class="hero-chip">GenAI Engine · Prototype</div>
               <div class="hero-title">
                 Genetics is shaping the future.<br/>
                 Understand your genome with <span>AI powered insight.</span>
@@ -786,7 +970,7 @@ if page == "Home":
               <div class="hero-sub">
                 The way your body responds to sleep, stress, food, exercise, and focus is influenced in part by your DNA.
                 As sequencing becomes more common, genetics is becoming a real force in healthcare and everyday life.
-                GenAI Labs exists to make those signals easier to understand without treating DNA as destiny. The goal
+                GenAI Engine exists to make those signals easier to understand without treating DNA as destiny. The goal
                 is to help you see how genetics may interact with your lifestyle so you can think about realistic ways
                 to support your long term health and performance.
               </div>
@@ -826,12 +1010,12 @@ if page == "Home":
         if st.button("Try the lifestyle chatbot", key="hero_chatbot"):
             st.session_state.active_page = "Lifestyle Chatbot"
 
-    # Why GenAI Labs exists
+    # Why GenAI Engine exists
     st.markdown('<div class="home-section dark-section">', unsafe_allow_html=True)
     col_left, col_right = st.columns([1.4, 1.0])
 
     with col_left:
-        st.markdown('<div class="section-title">Why GenAI Labs exists</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-title">Why GenAI Engine exists</div>', unsafe_allow_html=True)
         st.markdown(
             """
             - Turn raw SNP data into something a person can actually read.  
@@ -845,9 +1029,9 @@ if page == "Home":
         newsletter_block("home")
     st.markdown("</div>", unsafe_allow_html=True)
 
-    # Why choose GenAI Labs
+    # Why choose GenAI Engine
     st.markdown('<div class="home-section dark-section">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">Why choose GenAI Labs?</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">Why choose GenAI Engine?</div>', unsafe_allow_html=True)
     st.markdown(
         '<div class="section-sub">A focused, lifestyle aware, education first platform instead of a generic consumer report.</div>',
         unsafe_allow_html=True,
@@ -859,7 +1043,7 @@ if page == "Home":
             <div class="feature-label">Founder story</div>
             <div class="feature-title">Designed by a future AI geneticist</div>
             <div class="feature-body">
-              GenAI Labs is led by Anjali, a high school student who plans to work at the intersection of genetics,
+              GenAI Engine is led by Anjali, a high school student who plans to work at the intersection of genetics,
               AI, and clinical decision making. The project reflects real experience in rare disease research and
               clinical volunteering, translated into a tool that explains DNA in a calm and structured way.
             </div>
@@ -943,7 +1127,7 @@ if page == "Home":
                 My background includes Johns Hopkins affiliated research focused on rare disease biology, internships that explore
                 both medicine and research, and formal laboratory certifications that trained me in careful, real-world lab practice.
                 I am especially interested in genetic counseling and neuro oncology, and in how AI can support thoughtful,
-                evidence-aware conversations about risk and lifestyle. GenAI Labs is my way of connecting everything I am
+                evidence-aware conversations about risk and lifestyle. GenAI Engine is my way of connecting everything I am
                 learning into a single pipeline: from raw genomic data, to structured trait interpretation, to clear explanations
                 that help people understand their biology in a calm and responsible way.
               </div>
@@ -986,8 +1170,8 @@ if page == "Home":
               <div class="roadmap-title">Beyond this prototype</div>
               <div>
                 · Expanding the trait panel with additional genotypes and pathways that relate to lifestyle. <br/>
-                · Account creation so users can save reports under a GenAI Labs login. <br/>
-                · Email delivery of reports from a dedicated GenAI Labs address. <br/>
+                · Account creation so users can save reports under a GenAI Engine login. <br/>
+                · Email delivery of reports from a dedicated GenAI Engine address. <br/>
                 · A cautious chatbot that lets users ask follow up questions about their traits and habits, framed as education
                   and ideas rather than medical advice.
               </div>
@@ -1014,7 +1198,7 @@ if page == "Home":
     st.markdown('<div class="section-title">Safety, privacy, and limitations</div>', unsafe_allow_html=True)
     st.markdown(
         """
-        - GenAI Labs is an educational prototype. It does not diagnose, treat, or predict disease.  
+        - GenAI Engine is an educational prototype. It does not diagnose, treat, or predict disease.  
         - This tool focuses on a small set of lifestyle-related traits, not your full genomic risk.  
         - In this local version, files are processed for the session and not saved to a user database.  
         - Genetics is only one part of the picture alongside sleep, nutrition, stress, and environment.  
@@ -1033,7 +1217,7 @@ if page == "Home":
         Plain text genotype files with columns like rsid, chromosome, position, and genotype. A 23andMe-style export is a common example.  
 
         **Will this tell me if I have a disease?**  
-        No. GenAI Labs only looks at a small set of lifestyle-oriented traits and does not provide medical risk predictions.  
+        No. GenAI Engine only looks at a small set of lifestyle-oriented traits and does not provide medical risk predictions.  
 
         **Is this a replacement for my doctor or genetic counselor?**  
         No. This is a learning tool. It can help you think of questions, but it cannot replace professional advice.  
@@ -1046,7 +1230,7 @@ elif page == "Upload & Report":
     st.markdown('<div class="section-title">Generate a personal trait report</div>', unsafe_allow_html=True)
     st.markdown(
         '<div class="section-sub">'
-        'Upload a compatible raw DNA text file. GenAI Labs will interpret a subset of variants, build a trait '
+        'Upload a compatible raw DNA text file. GenAI Engine will interpret a subset of variants, build a trait '
         'profile, and ask an AI model to generate a plain language overview with a focus on traits that may interact with lifestyle.</div>',
         unsafe_allow_html=True,
     )
@@ -1121,7 +1305,7 @@ elif page == "Upload & Report":
                     if email_for_result.strip():
                         st.info(
                             f"In a future deployed version, this report could also be sent securely to {email_for_result.strip()} "
-                            "from a GenAI Labs email address."
+                            "from a GenAI Engine email address."
                         )
 
             except Exception as e:
@@ -1140,7 +1324,7 @@ elif page == "Upload & Report":
             """
         )
         st.markdown("---")
-        st.markdown("#### What GenAI Labs does")
+        st.markdown("#### What GenAI Engine does")
         st.markdown(
             """
             - Parses a raw genotype file line by line  
@@ -1151,7 +1335,7 @@ elif page == "Upload & Report":
             """
         )
         st.markdown("---")
-        st.markdown("#### What GenAI Labs does not do")
+        st.markdown("#### What GenAI Engine does not do")
         st.markdown(
             """
             - It does not diagnose conditions  
@@ -1369,7 +1553,7 @@ elif page == "Trait Explorer":
 elif page == "Trait Science":
     st.markdown('<div class="section-title">Science behind the traits</div>', unsafe_allow_html=True)
     st.markdown(
-        '<div class="section-sub">A high-level overview of how GenAI Labs turns individual genetic variants into trait interpretations.</div>',
+        '<div class="section-sub">A high-level overview of how GenAI Engine turns individual genetic variants into trait interpretations.</div>',
         unsafe_allow_html=True,
     )
 
@@ -1377,7 +1561,7 @@ elif page == "Trait Science":
     st.markdown(
         """
         A single nucleotide polymorphism (SNP) is a position in the genome where people commonly differ by a single base.
-        GenAI Labs uses SNPs that have been studied in the literature and are associated with traits such as caffeine
+        GenAI Engine uses SNPs that have been studied in the literature and are associated with traits such as caffeine
         metabolism, sleep patterns, exercise response, and certain neurobehavioral tendencies.
         """,
         unsafe_allow_html=True,
@@ -1416,7 +1600,7 @@ elif page == "Trait Science":
     st.markdown(
         """
         Most common genetic variants have small effects that interact with many other factors like sleep, stress,
-        environment, and medical history. GenAI Labs treats traits as gentle hints rather than answers. Any serious
+        environment, and medical history. GenAI Engine treats traits as gentle hints rather than answers. Any serious
         medical concern should always be discussed with a healthcare professional.
         """,
         unsafe_allow_html=True,
@@ -1458,10 +1642,10 @@ elif page == "Trait Science":
 
 # ---------- ABOUT ----------
 elif page == "About":
-    st.markdown('<div class="section-title">About GenAI Labs</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">About GenAI Engine</div>', unsafe_allow_html=True)
     st.markdown(
         '<div class="section-sub">'
-        'GenAI Labs is an educational prototype built to explore how AI can help interpret '
+        'GenAI Engine is an educational prototype built to explore how AI can help interpret '
         'small scale genomic trait panels in a transparent and lifestyle aware way.</div>',
         unsafe_allow_html=True,
     )
@@ -1513,7 +1697,7 @@ Render HTML report (and optional PDF)""",
     st.markdown('<div class="section-title">Safety and limitations</div>', unsafe_allow_html=True)
     st.markdown(
         """
-        GenAI Labs is designed as an educational tool. It highlights potential trait patterns and how they might relate to
+        GenAI Engine is designed as an educational tool. It highlights potential trait patterns and how they might relate to
         lifestyle, but it does not measure risk for disease or replace professional genetic counseling. All interpretations
         are simplified and should be viewed as conversation starters, not conclusions.
         """,
@@ -1524,7 +1708,7 @@ Render HTML report (and optional PDF)""",
     st.markdown('<div class="section-title">Frequently asked questions</div>', unsafe_allow_html=True)
     st.markdown(
         """
-        **Does GenAI Labs store my DNA data?**  
+        **Does GenAI Engine store my DNA data?**  
         In this prototype, files are handled within your session. A production deployment would include a clear privacy
         policy and options for data deletion or local-only processing.
 
@@ -1569,13 +1753,15 @@ elif page == "Contact":
             else:
                 st.success(
                     "Thank you for reaching out. In a production environment this would send your message to the project owner."
-                )
+              )
+
+st.markdown("</div>", unsafe_allow_html=True)
 # ---------- Global footer ----------
 st.markdown(
     """
     <div class="site-footer">
       <div>
-        GenAI Labs · Educational genomics prototype · Not for diagnosis or treatment.
+        GenAI Engine · Educational genomics prototype · Not for diagnosis or treatment.
       </div>
       <div>
         Built by Anjali Nalla · Independent project, not affiliated with 23andMe or any consumer genetics company.
